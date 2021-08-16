@@ -32,4 +32,5 @@ li {
     margin-left: auto;
     align-self: center;
     margin-right: 20px;
+    cursor: pointer;
 }

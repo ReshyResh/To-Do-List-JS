@@ -1,30 +1,14 @@
 import _ from 'lodash';
 import './style.css';
 import {sort} from './sort.js';
+import {tasks} from './content.js';
 
 const parent = document.getElementById('list');
-const tasks = [
-  {
-    description: "Task 2",
-    completed: false,
-    index:1
-  },
-  {
-    description: "Task 1",
-    completed: false,
-    index:0
-  },
-  {
-    description: "Task 3",
-    completed: false,
-    index:2
-  }
-];
-
 sort(tasks, 'index');
-console.log(tasks);
 
-function component() {
+let active = false;
+
+content = () => {
     for( let i = 0; i <= tasks.length; i+= 1){
           const li = document.createElement('li');
           const box = document.createElement('input');
@@ -34,14 +18,34 @@ function component() {
           box.id = i;
           li.append(box);
           li.append (`${tasks[i].description}`);
+          drag.addEventListener('mousedown', (e) => {
+            console.log("Mouse down!");
+            console.log(e.clientX);
+            console.log(e.clientY);
+            active = true;
+          });
+          drag.addEventListener('mousemove', (e) => {
+            if (active == true) {
+            console.log("Mouse moving!");
+            console.log(e.clientX);
+            console.log(e.clientY);
+            }
+            else {
+              console.log("Not active!");
+            }
+          });
+          drag.addEventListener('mouseup', (e) => {
+            console.log("Mouse up!");
+            console.log(e.clientX);
+            console.log(e.clientY);
+            active = false;
+          });
           li.append(drag);
           parent.appendChild(li);
         }
   }
 
-  document.body.addEventListener('click', (e) => {
-    console.log(e.clientX);
-    console.log(e.clientY);
-  });
+
+
   
-  document.onload = component();
+  document.onload = content();
