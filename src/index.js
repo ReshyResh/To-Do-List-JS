@@ -6,6 +6,7 @@ import add from './add-item.js';
 import rem from './remove-item';
 import checkbox from './checkboxes';
 import defaults from './content';
+import revs from './remove-one.js';
 import { setStorage, getStorage } from './storage';
 
 const parent = document.getElementById('list');
@@ -36,10 +37,16 @@ const content = (arr) => {
     li.append(`${arr[i].description}`);
 
     li.addEventListener('dblclick', () => {
-      li.innerHTML = `<input type="checkbox" id="${i}"></input><input id = "change${i}" class="change" type = "text" value = "${arr[i].description}"></input>`
+      li.classList.add('editing');
+      li.innerHTML = `<input type="checkbox" id="${i}"></input><input id = "change${i}" class="change" type = "text" value = "${arr[i].description}"></input><i id="remm${i}" class="drag fas fa-trash-alt"></i>`
+      document.getElementById(`change${i}`).focus();
+      document.getElementById(`remm${i}`).addEventListener('click', () => {
+      remm(i);
+    });
     });
     document.body.addEventListener('click', (e) => {
-      if (!(parent.contains(e.target))) {
+      if (!(li.contains(e.target))) {
+        li.classList.remove('editing');
         arr[i].description = document.getElementById(`change${i}`).value;
         setStorage(arr);
         content(arr);
@@ -58,10 +65,11 @@ const content = (arr) => {
         li.style.top = `${e.clientY - 26}px`;
       }
     });
-
-    drag.addEventListener('mouseup', () => {
+    drag.addEventListener('mouseup', (e) => {
       li.classList.remove('dragging');
       li.style.position = 'inherit';
+      console.log("You targeted "+ e.target);
+      console.log(e.target);
       active = false;
     });
 
@@ -82,6 +90,12 @@ form.addEventListener('click', () => {
   setStorage(tasks);
   content(tasks);
 });
+
+const remm = (index) => {
+  revs(tasks, index);
+  setStorage(tasks);
+  content(tasks);
+};
 
 document.body.addEventListener('change', () => { checkbox(tasks); setStorage(tasks); });
 document.onload = getStorage();

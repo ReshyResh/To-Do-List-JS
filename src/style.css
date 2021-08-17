@@ -37,7 +37,6 @@ li {
 #completed {
   text-align: center;
   margin-top: 20px;
-  text-decoration: underline;
   cursor: pointer;
 }
 
@@ -51,11 +50,14 @@ li {
   cursor: pointer;
   font-size: 1em;
   align-self: center;
+  margin-right: -5px;
+
 }
 
 .fas {
   color: rgba(20, 20, 20, 0.6);
   text-decoration: none !important;
+  text-align: center;
 }
 
 .drag {
@@ -85,4 +87,9 @@ input[type='checkbox'] {
   border: none;
   font-family: 'Montserrat', sans-serif;
   font-size: 1em;
+  background: yellow;
+}
+
+.editing {
+  background: yellow;
 }
