@@ -1,11 +1,9 @@
 /* eslint no-loop-func: 0, no-unused-vars: 0 */
 import _ from 'lodash';
 import './style.css';
-import sort from './sort';
-import defaults from './content';
-import { setStorage, getStorage } from './storage';
-
-
+import sort from './sort.js';
+import defaults from './content.js';
+import { setStorage, getStorage } from './storage.js';
 const parent = document.getElementById('list');
 const clear = document.getElementById('completed');
 const form = document.getElementById('add');
