@@ -1,7 +1,9 @@
 /* eslint no-loop-func: 0, no-unused-vars: 0 */
-import _ from 'lodash';
+import _, { remove } from 'lodash';
 import './style.css';
 import sort from './sort';
+import add from './add-item.js';
+import rem from './remove-item';
 import checkbox from './checkboxes';
 import defaults from './content';
 import { setStorage, getStorage } from './storage';
@@ -32,7 +34,6 @@ const content = (arr) => {
     li.id = `item${i}`;
     li.append(box);
     li.append(`${arr[i].description}`);
-
     drag.addEventListener('mousedown', () => {
       active = true;
     });
@@ -59,32 +60,17 @@ const content = (arr) => {
 };
 
 clear.addEventListener('click', () => {
-  const toremove = [];
-  for (let i = 0; i < tasks.length; i += 1) {
-    if (document.getElementById(i).checked) { toremove.push(i); }
-  }
-  let counter = 0;
-  toremove.forEach((element) => {
-    tasks.splice(element - counter, 1);
-    counter += 1;
-  });
+  rem(tasks);
   setStorage(tasks);
   content(tasks);
 });
 
 form.addEventListener('click', () => {
-  const form = document.getElementById('input-text').value;
-  let ind = 0;
-  for (let p = 0; p < tasks.length; p += 1) { ind = tasks[p].index; }
-  const blob = {
-    description: form,
-    completed: false,
-    index: ind + 1,
-  };
-  tasks.push(blob);
+  tasks.push(add(tasks));
   setStorage(tasks);
   content(tasks);
 });
+
 document.body.addEventListener('change', () => { checkbox(tasks); setStorage(tasks); });
 document.onload = getStorage();
 if (localStorage.getItem('storage_to-do')) {
