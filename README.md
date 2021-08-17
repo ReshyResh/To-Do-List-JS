@@ -15,6 +15,10 @@ A simple to do list made using Javascript, Microverse project.
 # Live demo
 ### Click [here](https://reshyresh.github.io/To-Do-List-JS/) for the live demo!
 
+# Installation 
+
+In case you want the project to run on your local machine and not the live demo, clone the repo and run `npm run build` .
+
 # Author
 **Robert Baiesita**
   - Github : [@ReshyResh](https://github.com/ReshyResh/)
