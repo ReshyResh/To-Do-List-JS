@@ -17,7 +17,7 @@ A simple to do list made using Javascript, Microverse project.
 
 # Installation 
 
-In case you want the project to run on your local machine and not the live demo, clone the repo and run `npm run build` .
+In case you want the project to run on your local machine and not the live demo, clone the repo by running `git clone https://github.com/ReshyResh/To-Do-List-JS.git` , jump to that directory by using `cd To-Do-List-JS ` and run `npm run build` .
 
 # Author
 **Robert Baiesita**
