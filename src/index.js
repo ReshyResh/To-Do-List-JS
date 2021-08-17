@@ -31,7 +31,6 @@ const content = (arr) => {
     li.id = `item${i}`;
     li.append(box);
     li.append(`${arr[i].description}`);
-
     box.addEventListener('change', () => {
       for (let k = 0; k < arr.length; k += 1) {
         if (document.getElementById(k).checked) {
