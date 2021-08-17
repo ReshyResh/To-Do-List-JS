@@ -79,3 +79,9 @@ input[type='checkbox'] {
   background: rgba(227, 96, 86, 0.8);
   width: 450px;
 }
+
+#change {
+    outline: none;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+}
