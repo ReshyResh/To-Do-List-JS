@@ -5,6 +5,7 @@ import sort from './sort';
 import defaults from './content';
 import { setStorage, getStorage } from './storage';
 
+
 const parent = document.getElementById('list');
 const clear = document.getElementById('completed');
 const form = document.getElementById('add');
