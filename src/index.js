@@ -32,17 +32,6 @@ const content = (arr) => {
     li.append(box);
     li.append(`${arr[i].description}`);
 
-    li.addEventListener('dblclick', () => {
-      li.innerHTML = `<input type="checkbox" id="${i}"></input><input id = "change ${i}" type = "text" value = "${arr[i].description}"></input>`
-    });
-    li.addEventListener('click', (e) => {
-
-      if (!(li.contains(e.target))) {
-        li.innerHTML = `changed`;
-      }
-
-    });
-
     box.addEventListener('change', () => {
       for (let k = 0; k < arr.length; k += 1) {
         if (document.getElementById(k).checked) {
