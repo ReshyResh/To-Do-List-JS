@@ -34,6 +34,18 @@ const content = (arr) => {
     li.id = `item${i}`;
     li.append(box);
     li.append(`${arr[i].description}`);
+
+    li.addEventListener('dblclick', () => {
+      li.innerHTML = `<input type="checkbox" id="${i}"></input><input id = "change${i}" class="change" type = "text" value = "${arr[i].description}"></input>`
+    });
+    document.body.addEventListener('click', (e) => {
+      if (!(parent.contains(e.target))) {
+        arr[i].description = document.getElementById(`change${i}`).value;
+        setStorage(arr);
+        content(arr);
+      }
+    });
+
     drag.addEventListener('mousedown', () => {
       active = true;
     });
