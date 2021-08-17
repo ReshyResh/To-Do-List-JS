@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    <h1>To Do List</h1>
     <div id="list-container">
         <h2>Today's to do</h2>
-        <input type="text" placeholder="Add to your list" class="input-text">
+        <div class="input-container">
+        <input type="text" placeholder="Add to your list" id="input-text"><i class="fas fa-check" id="add"></i>
+        </div>
         <ul id="list"></ul>
+        <span id="completed">Clear all completed</span>
     </div>
 </body>
 </html>

@@ -1,36 +1,81 @@
 body {
-    background-color: bisque;
+  background-color: #fff;
+  font-family: 'Montserrat', sans-serif;
 }
 
 li {
-    display: flex;
-    flex-flow: row;
-    height: 50px;
-    border: 1px solid rgba(0,0,0,0.1);
-    line-height: 50px;
+  display: flex;
+  flex-flow: row;
+  height: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  line-height: 50px;
 }
 
 #list-container {
-    display: flex;
-    flex-flow: column;
-    text-align: center;
-    margin: auto;
-    width: 30%;
+  display: flex;
+  flex-flow: column;
+  text-align: left;
+  margin: auto;
+  margin-top: 200px;
+  width: 450px;
+  padding: 20px;
+  box-shadow: 1px 1px 10px;
 }
 
 #list {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
-.input-text {
-    height: 20px;
-    padding: 10px 0 10px 0;
+#input-text {
+  height: 20px;
+  padding: 10px 0 10px 0;
+  border: none;
+  width: 90%;
+}
+
+#completed {
+  text-align: center;
+  margin-top: 20px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 35px 0 0;
+}
+
+.fa-check {
+  cursor: pointer;
+  font-size: 1em;
+  align-self: center;
+}
+
+.fas {
+  color: rgba(20, 20, 20, 0.6);
+  text-decoration: none !important;
 }
 
 .drag {
-    margin-left: auto;
-    align-self: center;
-    margin-right: 20px;
-    cursor: pointer;
+  margin-left: auto;
+  align-self: center;
+  margin-right: 20px;
+  cursor: pointer;
+  width: 30px;
+  height: 100%;
+  line-height: 50px;
+  font-size: 1.5em;
+}
+
+input[type='checkbox'] {
+  margin-right: 10px;
+  outline: none;
+  align-self: center;
+}
+
+.dragging {
+  background: rgba(227, 96, 86, 0.8);
+  width: 450px;
 }
