@@ -2,6 +2,7 @@
 import _ from 'lodash';
 import './style.css';
 import sort from './sort';
+import checkbox from './checkboxes';
 import defaults from './content';
 import { setStorage, getStorage } from './storage';
 
@@ -31,19 +32,6 @@ const content = (arr) => {
     li.id = `item${i}`;
     li.append(box);
     li.append(`${arr[i].description}`);
-    box.addEventListener('change', () => {
-      for (let k = 0; k < arr.length; k += 1) {
-        if (document.getElementById(k).checked) {
-          arr[k].completed = 'true';
-          setStorage(arr);
-          document.getElementById(`item${k}`).style.textDecoration = 'line-through';
-        } else {
-          arr[k].completed = 'false';
-          setStorage(arr);
-          document.getElementById(`item${k}`).style.textDecoration = 'none';
-        }
-      }
-    });
 
     drag.addEventListener('mousedown', () => {
       active = true;
@@ -97,7 +85,7 @@ form.addEventListener('click', () => {
   setStorage(tasks);
   content(tasks);
 });
-
+document.body.addEventListener('change', () => { checkbox(tasks); setStorage(tasks); });
 document.onload = getStorage();
 if (localStorage.getItem('storage_to-do')) {
   content(getStorage());

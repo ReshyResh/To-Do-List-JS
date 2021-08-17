@@ -80,7 +80,7 @@ input[type='checkbox'] {
   width: 450px;
 }
 
-#change {
+.change {
   outline: none;
   border: none;
   font-family: 'Montserrat', sans-serif;
