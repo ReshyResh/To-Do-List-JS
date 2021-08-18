@@ -1,12 +1,12 @@
-/* eslint no-loop-func: 0, no-unused-vars: 0 */
-import _, { remove } from 'lodash';
+/* eslint no-loop-func: 0, no-use-before-define: 0 */
+import _, { remove } from 'lodash'; // eslint-disable-line
 import './style.css';
 import sort from './sort';
-import add from './add-item.js';
+import add from './add-item';
 import rem from './remove-item';
 import checkbox from './checkboxes';
 import defaults from './content';
-import revs from './remove-one.js';
+import revs from './remove-one';
 import { setStorage, getStorage } from './storage';
 
 const parent = document.getElementById('list');
@@ -18,6 +18,12 @@ sort(defaults, 'index');
 sort(tasks, 'index');
 
 let active = false;
+
+const remm = (index) => {
+  revs(tasks, index);
+  setStorage(tasks);
+  content(tasks);
+};
 
 const content = (arr) => {
   parent.innerHTML = '';
@@ -38,16 +44,21 @@ const content = (arr) => {
 
     li.addEventListener('dblclick', () => {
       li.classList.add('editing');
-      li.innerHTML = `<input type="checkbox" id="${i}"></input><input id = "change${i}" class="change" type = "text" value = "${arr[i].description}"></input><i id="remm${i}" class="drag fas fa-trash-alt"></i>`
+      li.innerHTML = `<input type="checkbox" id="${i}"></input><input id = "change${i}" class="change" type = "text" value = "${arr[i].description}"></input><i id="remm${i}" class="drag fas fa-trash-alt"></i>`;
       document.getElementById(`change${i}`).focus();
+      // document.getElementById(`change${i}`).addEventListener('keydown', () => {
+      //   arr[i].description = document.getElementById(`change${i}`).value;
+      //   setStorage(arr);
+      // });
       document.getElementById(`remm${i}`).addEventListener('click', () => {
-      remm(i);
-    });
+        remm(i);
+      });
     });
     document.body.addEventListener('click', (e) => {
       if (!(li.contains(e.target))) {
         li.classList.remove('editing');
         arr[i].description = document.getElementById(`change${i}`).value;
+        checkbox(arr);
         setStorage(arr);
         content(arr);
       }
@@ -68,7 +79,7 @@ const content = (arr) => {
     drag.addEventListener('mouseup', (e) => {
       li.classList.remove('dragging');
       li.style.position = 'inherit';
-      console.log("You targeted "+ e.target);
+      console.log(`You targeted ${e.target}`);
       console.log(e.target);
       active = false;
     });
@@ -90,12 +101,6 @@ form.addEventListener('click', () => {
   setStorage(tasks);
   content(tasks);
 });
-
-const remm = (index) => {
-  revs(tasks, index);
-  setStorage(tasks);
-  content(tasks);
-};
 
 document.body.addEventListener('change', () => { checkbox(tasks); setStorage(tasks); });
 document.onload = getStorage();
