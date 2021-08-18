@@ -11,6 +11,7 @@ A simple to do list made using Javascript, Microverse project.
   - Add new task.
   - Remove completed tasks.
   - Data is stored after closing the page.
+  - Double click to edit/remove.
 
 # Live demo
 ### Click [here](https://reshyresh.github.io/To-Do-List-JS/) for the live demo!
