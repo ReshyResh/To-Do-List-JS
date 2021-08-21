@@ -2,10 +2,12 @@
 import { setStorage } from './storage';
 import checkbox from './checkboxes';
 import { removeIndex } from './index'; // eslint-disable-line
+import swap from './swap';
 
 const parent = document.getElementById('list');
 
 const content = (arr) => {
+  setStorage(arr);
   let active = false;
   parent.innerHTML = '';
   for (let i = 0; i <= arr.length; i += 1) {
@@ -40,23 +42,61 @@ const content = (arr) => {
         content(arr);
       }
     });
-
     drag.addEventListener('mousedown', () => {
-      active = true;
+      let drags = document.getElementsByClassName('drag');
+      for(let k = 0; k < drags.length; k += 1) {
+        if(k != i){
+          drags[k].style.display = 'none';
+        }
+      }
+      setTimeout(() => {
+        active = true;
+      }, 50);
+      
+      
     });
-
     drag.addEventListener('mousemove', (e) => {
       if (active === true) {
+        li.style.display = "none";
         li.classList.add('dragging');
         li.style.position = 'absolute';
         li.style.left = `${e.clientX - 425}px`;
         li.style.top = `${e.clientY - 26}px`;
-      }
+        let x = e.clientX;
+        let y = e.clientY;
+        let trgt = document.elementFromPoint(x,y);
+        if(trgt.nodeName == "LI"){
+          console.log("Targetting correctly");
+          trgt.classList.add("editing");
+          setTimeout(() => {
+            trgt.classList.add("backtonormal");
+          }, 500);
+          setTimeout(() => {
+            trgt.classList.remove('editing','backtonormal');
+          }, 500);
+        }
+        li.style.display = "flex";
+      }   
     });
-    drag.addEventListener('mouseup', () => {
+    drag.addEventListener('mouseup', (e) => {
+      li.style.display = "none";
+      let x = e.clientX;
+      let y = e.clientY;
+      let trgt = document.elementFromPoint(x,y);
+      if(trgt.nodeName == "LI"){
+        console.log("It's an li with id ",trgt.id.replace( /^\D+/g, ''));
+        let tobeswapped = trgt.id.replace( /^\D+/g, '');
+        content(swap(arr,i,tobeswapped));
+      }
+      console.log("You have targeted",trgt);
+      active = false;
+      li.style.display = "flex";
       li.classList.remove('dragging');
       li.style.position = 'inherit';
-      active = false;
+      let drags = document.getElementsByClassName('drag');
+      for(let i = 0; i < drags.length; i += 1) {
+        drags[i].style.display = 'block';
+      }
     });
 
     li.append(drag);

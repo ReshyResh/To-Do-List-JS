@@ -8,5 +8,8 @@ export default (arr) => {
     arr.splice(element - counter, 1);
     counter += 1;
   });
+  for(let j = 0; j < arr.length; j += 1){
+    arr[j].index = j;
+  }
   return arr;
 };
