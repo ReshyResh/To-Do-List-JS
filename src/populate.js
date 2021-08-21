@@ -1,5 +1,5 @@
 /* eslint no-loop-func: 0, import/prefer-default-export: 0 */
-import { setStorage } from './storage';
+import { setStorage, getStorage } from './storage';
 import checkbox from './checkboxes';
 import { removeIndex } from './index'; // eslint-disable-line
 import swap from './swap';
@@ -30,16 +30,20 @@ const content = (arr) => {
       li.innerHTML = `<input type="checkbox" id="${i}"></input><input id = "change${i}" class="change" type = "text" value = "${arr[i].description}"></input><i id="remm${i}" class="drag fas fa-trash-alt"></i>`;
       document.getElementById(`change${i}`).focus();
       document.getElementById(`remm${i}`).addEventListener('click', () => {
-        removeIndex(i);
+        content(removeIndex(arr,i));
+        checkbox(removeIndex(arr,i));
+        setStorage(removeIndex(arr,i));
       });
     });
     document.body.addEventListener('click', (e) => {
       if (!(li.contains(e.target))) {
         li.classList.remove('editing');
-        arr[i].description = document.getElementById(`change${i}`).value;
-        checkbox(arr);
-        setStorage(arr);
-        content(arr);
+        let arr2 = getStorage();
+        let value = document.getElementById(`change${i}`).value;
+        arr2[i].description = value;
+        checkbox(arr2);
+        setStorage(arr2);
+        content(arr2);
       }
     });
     drag.addEventListener('mousedown', () => {

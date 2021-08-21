@@ -17,23 +17,19 @@ let tasks = getStorage();
 sort(defaults, 'index');
 sort(tasks, 'index');
 
-const removeIndex = (index) => {
-  removeSplice(tasks, index);
-  setStorage(tasks);
-  content(tasks);
+const removeIndex = (arr,index) => {
+  removeSplice(arr, index);
+  return arr;
 };
 export { removeIndex }; // eslint-disable-line
 
 clear.addEventListener('click', () => {
   rem(tasks);
-  setStorage(tasks);
-  content(tasks);
 });
 
 form.addEventListener('click', () => {
-  tasks.push(add(tasks));
-  setStorage(tasks);
-  content(tasks);
+  content(add(tasks));
+  checkbox(add(tasks));
 });
 
 document.body.addEventListener('change', () => { checkbox(tasks); setStorage(tasks); });

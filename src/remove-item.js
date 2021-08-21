@@ -1,3 +1,6 @@
+import { setStorage } from "./storage";
+import { content } from "./populate";
+
 export default (arr) => {
   const toremove = [];
   for (let i = 0; i < arr.length; i += 1) {
@@ -11,5 +14,6 @@ export default (arr) => {
   for(let j = 0; j < arr.length; j += 1){
     arr[j].index = j;
   }
-  return arr;
+  setStorage(arr);
+  content(arr);
 };
