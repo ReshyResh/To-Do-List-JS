@@ -3,7 +3,7 @@ import _, { remove } from 'lodash'; // eslint-disable-line
 import './style.css';
 import sort from './sort';
 import add from './add-item';
-import rem from './remove-item';
+import rem from './remove-item'; // eslint-disable-line
 import checkbox from './checkboxes';
 import defaults from './content';
 import removeSplice from './remove-one';
@@ -17,27 +17,27 @@ let tasks = getStorage();
 sort(defaults, 'index');
 sort(tasks, 'index');
 
-const removeIndex = (arr,index) => {
-  removeSplice(arr, index);
-  return arr;
+const removeIndex = (index) => {
+  setStorage(removeSplice(getStorage(), index));
+  content(getStorage());
 };
 export { removeIndex }; // eslint-disable-line
 
 clear.addEventListener('click', () => {
-  rem(tasks);
+  rem(getStorage());
 });
 
 form.addEventListener('click', () => {
-  content(add(tasks));
-  checkbox(add(tasks));
+  content(add(getStorage()));
 });
 
-document.body.addEventListener('change', () => { checkbox(tasks); setStorage(tasks); });
+document.body.addEventListener('change', () => { checkbox(getStorage()); });
 document.addEventListener('DOMContentLoaded', () => {
   content(tasks);
 }); if (localStorage.getItem('storage_to-do')) {
   content(getStorage());
 } else {
   tasks = defaults;
+  setStorage(defaults);
   content(tasks);
 }

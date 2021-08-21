@@ -1,3 +1,5 @@
+import { setStorage } from './storage';
+
 export default (arr) => {
   for (let k = 0; k < arr.length; k += 1) {
     if (document.getElementById(k).checked) {
@@ -8,4 +10,5 @@ export default (arr) => {
       document.getElementById(`item${k}`).style.textDecoration = 'none';
     }
   }
+  setStorage(arr);
 };

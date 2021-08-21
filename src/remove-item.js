@@ -1,5 +1,5 @@
-import { setStorage } from "./storage";
-import { content } from "./populate";
+import { setStorage } from './storage';
+import { content } from './populate'; // eslint-disable-line
 
 export default (arr) => {
   const toremove = [];
@@ -11,9 +11,10 @@ export default (arr) => {
     arr.splice(element - counter, 1);
     counter += 1;
   });
-  for(let j = 0; j < arr.length; j += 1){
+  for (let j = 0; j < arr.length; j += 1) {
     arr[j].index = j;
   }
   setStorage(arr);
   content(arr);
+  return arr;
 };

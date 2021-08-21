@@ -9,7 +9,6 @@ li {
   height: 50px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   line-height: 50px;
-  transition: all 0.5s;
 }
 
 #list-container {
@@ -80,7 +79,6 @@ input[type='checkbox'] {
 .dragging {
   background: rgba(227, 96, 86, 0.8);
   width: 450px;
-  pointer-events: auto;
 }
 
 .change {
@@ -94,8 +92,3 @@ input[type='checkbox'] {
 .editing {
   background: yellow;
 }
-
-.backtonormal {
-  background: none !important;
-}
-
