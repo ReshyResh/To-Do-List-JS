@@ -38,9 +38,9 @@ const content = (arr) => {
       if (!(li.contains(e.target)) && document.getElementById(`change${i}`)) {
         li.classList.remove('editing');
         const arr = getStorage();
-        checkbox(editItem(arr,i));
-        setStorage(editItem(arr,i));
-        content(editItem(arr,i));
+        checkbox(editItem(arr, i));
+        setStorage(editItem(arr, i));
+        content(editItem(arr, i));
       }
     });
 
