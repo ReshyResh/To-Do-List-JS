@@ -1,10 +1,9 @@
 import { setStorage } from './storage';
-import { content } from './populate'; // eslint-disable-line
 
-export default (arr) => {
+export default (arr) => { // Remove all completed tasks
   const toremove = [];
   for (let i = 0; i < arr.length; i += 1) {
-    if (document.getElementById(i).checked) { toremove.push(i); }
+    if (arr[i].completed == "true") { toremove.push(i); }
   }
   let counter = 0;
   toremove.forEach((element) => {
@@ -15,6 +14,5 @@ export default (arr) => {
     arr[j].index = j;
   }
   setStorage(arr);
-  content(arr);
   return arr;
 };

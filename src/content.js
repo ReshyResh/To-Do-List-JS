@@ -1,4 +1,4 @@
-export default [
+export default [ // Default settings, loaded up only if there's no local storage
   {
     description: 'Task 2',
     completed: false,
