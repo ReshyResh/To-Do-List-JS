@@ -26,5 +26,21 @@ describe('Add/Remove', () => {
         add(arr);
         expect(arr).toHaveLength(5);
     });
+    test('Remove one item from the list', () => {
+        const arr = [
+            {
+                description: 'Task 1',
+                completed: false,
+                index: 0,
+            },
+            {
+                description: 'Task 2',
+                completed: false,
+                index: 1,
+            }
+        ];
+        removeSplice(arr,0);
+        expect(arr).toHaveLength(1);
+    });
 });
 
